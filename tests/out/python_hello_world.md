@@ -4,5 +4,4 @@ Test test test.
 print("Hello, World")
 ```
 
-    >>> Hello, World
-    >>> 
+    Hello, World

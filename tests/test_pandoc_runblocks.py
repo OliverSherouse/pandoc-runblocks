@@ -10,18 +10,10 @@ OUTDIR = BASEDIR.joinpath("out")
 
 
 def get_output_for_path(path):
-    proc = subprocess.run(
-        [
-            "pandoc",
-            "-t",
-            "markdown",
-            "--filter",
-            "pandoc-runblocks",
-            str(path),
-        ],
-        capture_output=True,
+    output = subprocess.check_output(
+        ["pandoc", "-t", "markdown", "--filter", "pandoc-runblocks", str(path)]
     )
-    return proc.stdout.decode("utf-8")
+    return output.decode("utf-8")
 
 
 def match_file(filename):

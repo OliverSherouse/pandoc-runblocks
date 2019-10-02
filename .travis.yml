@@ -3,6 +3,8 @@ python:
   - "3.5"
   - "3.6"
   - "3.7"
+before_install:
+  - sudo apt-get install pandoc
 install:
   - curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
   - source $HOME/.poetry/env

@@ -20,7 +20,7 @@ class Interpreter(object):
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
-            text=True,
+            universal_newlines=True,
         )
         self.process = psutil.Process(self.popen.pid)
         self.queue = queue.Queue()

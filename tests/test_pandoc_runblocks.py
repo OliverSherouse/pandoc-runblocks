@@ -10,15 +10,26 @@ OUTDIR = BASEDIR.joinpath("out")
 
 
 def get_output_for_path(path):
-    output = subprocess.check_output(
-        ["pandoc", "-t", "markdown", "--filter", "pandoc-runblocks", str(path)]
+    return "\n".join(
+        subprocess.check_output(
+            [
+                "pandoc",
+                "-t",
+                "markdown",
+                "--filter",
+                "pandoc-runblocks",
+                str(path),
+            ],
+            universal_newlines=True,
+        ).splitlines()
     )
-    return output.decode("utf-8")
 
 
 def match_file(filename):
     got = get_output_for_path(SRCDIR.joinpath(filename))
-    expected = OUTDIR.joinpath(Path(filename).stem + ".md").read_text()
+    expected = "\n".join(
+        OUTDIR.joinpath(Path(filename).stem + ".md").read_text().splitlines()
+    )
     assert got == expected
 
 
